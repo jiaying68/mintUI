@@ -24,7 +24,7 @@
                     </tr>
                 </table>
             </li>
-            <li class="container" id="scrollContainer" ref="tableContent">
+            <li class="container" id="scrollContainer" ref="tableContent" v-on:touchend="handleScroll()">
                 <!-- 这个表格盛放的是内容 -->
                 <table ref="table">
                     <tr>
@@ -131,39 +131,20 @@
 export default {
     data(){
         return {
-            contentWidth:0,
-            dots:0,//记录一共有多少点
-            curDot:0,//记录当前激活的点
-            curScroll:0,//记录当前滚动的距离
-            maxScroll:0,//记录最大滚动值
-            scrollStart:0,//记录最小滚动值
-            markDots:[]
+            dots:0//记录一共有多少个点
         }
     },
     methods:{
         handleScroll(){   
-            console.log('scrolling');
-            return;
+            let markDot = 0;
             let scrollDis = this.$refs.tableContent.scrollLeft;
-            let divideNum = scrollDis/this.contentWidth-1;
-            this.markDots.push(divideNum)
-            if(scrollDis%this.contentWidth!=0){
-                this.markDots.push(++divideNum)
-            }
-            console.log(this.markDots)
-            let markdotsLength = this.markDots.length;
-            let dots = document.getElementsByClassName("bars");
-            let activeDots = document.getElementsByClassName('barsActive')
-            let activeDotsLength = activeDots.length;
-            let dotsLength = dots.length;
-            for(let i = 0; i < activeDotsLength; i++ ){
-                // this.removeClass(activeDots[i],'barsActive');
-                console.log(activeDots[i])
-            }
-            for(let i = 0; i<markdotsLength;i++){
-                // this.addClass(this.markDots[i],'barsActive');
-                console.log(this.markDots[i])
-            }
+            let contentWidth = this.$refs.tableContent.offsetWidth;
+            markDot = parseInt(scrollDis/contentWidth*this.dots);
+            let dot = document.getElementsByClassName("bars")[0];
+            let activeDot = document.getElementsByClassName('barsActive')[0]
+            this.removeClass(activeDot,'barsActive');
+            let bars = document.getElementsByClassName("bars");
+            this.addClass(bars[markDot],'barsActive');
 
         },
         hasClass( elements,cName ){ 
@@ -183,24 +164,12 @@ export default {
     mounted(){
         let contentWidth = this.$refs.tableContent.offsetWidth;
         this.contentWidth = contentWidth;
-        // console.log(`容器大小：${contentWidth}`);
-        
         let tableWidth = this.$refs.table.offsetWidth;
-        this.maxScroll = tableWidth;
-        // console.log(`表格大小：${tableWidth}`);
-
-        let dots = Math.ceil(tableWidth/contentWidth);
-        // console.log(dots);
-        this.dots = dots;
-        
-        // this.$refs.tableContent.addEventListener('mouseup',this.mouseup())
-
+        this.dots = Math.ceil(tableWidth/contentWidth);
         this.$nextTick().then(()=>{
             let activeDot = document.getElementsByClassName("bars")[0];
             this.addClass(activeDot,'barsActive')
-            // console.log(activeDot)
         });
-        this.$refs.tableContent.addEventListener('mouseup', this.handleScroll())
     }
 }
 </script>
