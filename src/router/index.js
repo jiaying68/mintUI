@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-// import Hi from '@/components/hi'
 import Message from '@/components/message'
 import Popup from '@/components/Popup'
 import Button from '@/components/button'
@@ -12,6 +11,10 @@ import Tebbar from '@/components/Tebbar'
 import Pulldown from '@/components/Pulldown'
 import Selector from '@/components/Selector'
 import Swipe from '@/components/Swipe'
+import DatetimePicker from '@/components/DatetimePicker'
+import FormValidate from '@/components/FormValidate'
+import TableList from '@/components/TableList'
+import Validate from '@/components/Validate'
 
 Vue.use(Router)
 
@@ -70,6 +73,26 @@ export default new Router({
             path: '/Swipe',
             name: 'Swipe',
             component: Swipe
+        },
+        {
+            path: '/DatetimePicker',
+            name: 'DatetimePicker',
+            component: DatetimePicker
+        },
+        {
+            path: '/FormValidate',
+            name: 'FormValidate',
+            component: FormValidate
+        },
+        {
+            path: '/TableList',
+            name: 'TableList',
+            component: TableList
+        },
+        {
+            path: '/Validate',
+            name: 'Validate',
+            component: Validate
         }
     ]
 })

@@ -3,12 +3,19 @@
     <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
+    <div class="mydiv"></div>
+    
     <!-- navbar -->
     <mt-navbar v-model="selected">
       <mt-tab-item id="1">选项一</mt-tab-item>
       <mt-tab-item id="2">选项二</mt-tab-item>
       <mt-tab-item id="3">选项三</mt-tab-item>
     </mt-navbar>
+    <div class="nav" style="margin-top:10px;" v-model="active" swipeable>
+      <mt-button size="small" @click.native.prevent="active = 'tab-container1'">tab 1</mt-button>
+      <mt-button size="small" @click.native.prevent="active = 'tab-container2'">tab 2</mt-button>
+      <mt-button size="small" @click.native.prevent="active = 'tab-container3'">tab 3</mt-button>
+    </div>
 
     <!-- tab-container -->
     <mt-tab-container v-model="selected">
@@ -22,11 +29,26 @@
         这是第三个选项内的内容
       </mt-tab-container-item>
     </mt-tab-container>
+    
+    <div class="page-tab-container">
+      <mt-tab-container class="page-tabbar-tab-container" v-model="active" swipeable>
+        <mt-tab-container-item id="tab-container1">
+          <mt-cell v-for="n in 10" title="tab-container 1" :key="n"></mt-cell>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="tab-container2">
+          <mt-cell v-for="n in 5" title="tab-container 2" :key="n"></mt-cell>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="tab-container3">
+          <mt-cell v-for="n in 7" title="tab-container 3" :key="n"></mt-cell>
+        </mt-tab-container-item>
+      </mt-tab-container>
+    </div>
   </div>
 </template>
 
 <script>
-import { Header } from 'mint-ui'
+import { Header } from 'mint-ui';
+// import { route } from '~@/assets/routeConfig.json'
 export default {
 
   components: {
@@ -46,8 +68,14 @@ export default {
         {"name":"底部选项栏","path":'/Tebbar'},
         {"name":"刷新页面","path":'/Pulldown'},
         {"name":"选择器","path":'/Selector'},
-        {"name":"应用于表格的轮播","path":'/Swipe'}
-      ]
+        {"name":"应用于表格的轮播","path":'/Swipe'},
+        {"name":"时间选择器","path":'/DatetimePicker'},
+        {"name":"表单校验","path":'/FormValidate'},
+        {"name":"表格","path":'/TableList'},
+        {"name":"校验","path":'/Validate'}
+        // 'aaa'
+      ],
+      active:'tab-container2'
     }
   },
   methods:{
@@ -58,7 +86,13 @@ export default {
         showCancelButton: true
       });
     }
-  }
+  },
+  created() {
+    // this.menus = route;
+  },
+  mounted() {
+    // console.log(route)
+  },
 }
 </script>
 
@@ -77,5 +111,11 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.mydiv{
+  width: 100px;
+  height: 100px;
+  background-color: red;
 }
 </style>
