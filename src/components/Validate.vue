@@ -35,12 +35,20 @@
     <mt-popup
       v-model="submitSuccess"
       position="top"
-      class="submitSuccess"
+      class="topNotice"
       :modal="false"
     >
       <p>提交成功!</p>
     </mt-popup>
 
+    <mt-popup
+      v-model="hasEmpty"
+      position="top"
+      class="topNotice"
+      :modal="false"
+    >
+      <p>请填完所有项目</p>
+    </mt-popup>
     <mt-button size="large" type="primary" @click.native="submitInput"
       >large</mt-button
     >
@@ -55,6 +63,7 @@ export default {
       inputStatus: {}, //校验的结果
       hasError: false, //判断是否有问题
       failSubmit: false, //判断错误弹窗是否弹出
+      hasEmpty: false, //判断是否有未填项
       submitSuccess: false //判断提交成功弹窗是否弹出
     }
   },
@@ -83,12 +92,17 @@ export default {
     },
     //提交成功后的操作
     submitInput() {
-      let hasError = document.getElementsByClassName('is-warning').length
-      if (hasError) {
-        this.hasError = true
+      if (!this.patientInfo.patientName || !this.patientInfo.patientAge) {
+        this.hasEmpty = true
+        return
+      }
+
+      // let hasError = document.getElementsByClassName('is-warning').length
+      if (this.hasError) {
+        // this.hasError = true
         this.failSubmit = true
       } else {
-        this.hasError = false
+        // this.hasError = false
         this.submitSuccess = true
       }
     }
@@ -106,6 +120,13 @@ export default {
       if (val) {
         setTimeout(() => {
           this.submitSuccess = false
+        }, 2000)
+      }
+    },
+    hasEmpty(val) {
+      if (val) {
+        setTimeout(() => {
+          this.hasEmpty = false
         }, 2000)
       }
     }
@@ -128,7 +149,7 @@ export default {
   font-weight: bolder;
 }
 
-.submitSuccess {
+.topNotice {
   width: 100%;
   height: 50px;
   text-align: center;
@@ -136,7 +157,7 @@ export default {
   backface-visibility: hidden;
 }
 
-.submitSuccess p {
+.topNotice p {
   line-height: 20px;
   color: white;
 }
