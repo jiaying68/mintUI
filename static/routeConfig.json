@@ -1,0 +1,57 @@
+[{
+        "path": "/",
+        "name": "HelloWorld"
+    },
+    {
+        "path": "/Message",
+        "name": "message"
+    },
+    {
+        "path": "/Popup",
+        "name": "popup"
+    },
+    {
+        "path": "/Button",
+        "name": "button"
+    },
+    {
+        "path": "/InfiniteScroll",
+        "name": "InfiniteScroll"
+    },
+    {
+        "path": "/ActionSheet",
+        "name": "ActionSheet"
+    },
+    {
+        "path": "/ElementUi",
+        "name": "ElementUi"
+    },
+    {
+        "path": "/Tebbar",
+        "name": "Tebbar"
+    },
+    {
+        "path": "/Pulldown",
+        "name": "Pulldown"
+    },
+    {
+        "path": "/Selector",
+        "name": "Selector"
+    },
+    {
+        "path": "/Swipe",
+        "name": "Swipe"
+    },
+    {
+        "path": "/DatetimePicker",
+        "name": "DatetimePicker"
+    },
+    {
+        "path": "/FormValidate",
+        "name": "FormValidate"
+    },
+    {
+        "path": "/TableList",
+        "name": "TableList"
+    }
+]

@@ -10,7 +10,7 @@ import 'mint-ui/lib/style.css' // 引入ming-UI中的样式
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'lib-flexible/flexible.js'
-import { regs } from '@/assets/regs'
+import { reges } from '@/assets/reges'
 
 // import Validator from 'vue-validator'
 // Vue.use(Validator)
@@ -26,7 +26,7 @@ Vue.use(ElementUI)
 Vue.use(MintUI) // 声明使用
 Vue.config.productionTip = false
 
-Vue.prototype.$_regs = regs
+Vue.prototype.$_reges = reges
 
 /* eslint-disable no-new */
 new Vue({
