@@ -61,7 +61,6 @@ export default {
     return {
       patientInfo: {}, //输入的信息
       inputStatus: {}, //校验的结果
-      hasError: false, //判断是否有问题
       failSubmit: false, //判断错误弹窗是否弹出
       hasEmpty: false, //判断是否有未填项
       submitSuccess: false //判断提交成功弹窗是否弹出
@@ -73,13 +72,9 @@ export default {
     inputType：输入的类型,
     notice：不满足要求时的提示信息*/
     checkInput(inputStr, inputType, notice) {
-      this.hasError = false
       this.inputStatus.result = []
       let regex = this.$_reges[inputType]
-      // console.log(regex)
-      // return
       if (!regex.test(inputStr)) {
-        this.hasError = true
         this.inputStatus[inputType] = 'warning'
 
         Toast({
@@ -97,38 +92,31 @@ export default {
         return
       }
 
-      // let hasError = document.getElementsByClassName('is-warning').length
-      if (this.hasError) {
-        // this.hasError = true
+      let hasError = document.getElementsByClassName('is-warning').length
+      if (hasError) {
         this.failSubmit = true
       } else {
-        // this.hasError = false
         this.submitSuccess = true
+      }
+    },
+    setFalse(val,obj){
+      if (val) {
+        setTimeout(() => {
+          this[obj] = false
+        }, 2000)
       }
     }
   },
   //控制提示弹出框显示一段时间后消失
   watch: {
     failSubmit(val) {
-      if (val) {
-        setTimeout(() => {
-          this.failSubmit = false
-        }, 2000)
-      }
+      this.setFalse(val,'failSubmit')
     },
     submitSuccess(val) {
-      if (val) {
-        setTimeout(() => {
-          this.submitSuccess = false
-        }, 2000)
-      }
+      this.setFalse(val,'submitSuccess')
     },
     hasEmpty(val) {
-      if (val) {
-        setTimeout(() => {
-          this.hasEmpty = false
-        }, 2000)
-      }
+      this.setFalse(val,'hasEmpty')
     }
   }
 }

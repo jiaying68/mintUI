@@ -9,7 +9,7 @@ import 'mint-ui/lib/style.css' // 引入ming-UI中的样式
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import 'lib-flexible/flexible.js'
+// import 'lib-flexible/flexible.js'
 import { reges } from '@/assets/reges'
 
 // import Validator from 'vue-validator'
