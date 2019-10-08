@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
+      <router-link to="/" slot="left">
+        <mt-button icon="back">返回</mt-button>
+      </router-link>
+      <mt-button icon="more" slot="right"></mt-button>
+    </mt-header>
     <mt-field
       label="就诊人姓名："
       placeholder="请输入姓名"
@@ -53,7 +59,10 @@ export default {
     }
   },
   methods: {
-    //输入时检查是否合法
+    /*输入时检查是否合法
+    inputStr：输入的内容,
+    inputType：输入的类型,
+    notice：不满足要求时的提示信息*/
     checkInput(inputStr, inputType, notice) {
       this.hasError = false
       this.inputStatus.result = []

@@ -3,7 +3,6 @@
     <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
-    <div class="mydiv"></div>
     
     <!-- navbar -->
     <mt-navbar v-model="selected">
@@ -111,11 +110,5 @@ li {
 }
 a {
   color: #42b983;
-}
-
-.mydiv{
-  width: 100px;
-  height: 100px;
-  background-color: red;
 }
 </style>
